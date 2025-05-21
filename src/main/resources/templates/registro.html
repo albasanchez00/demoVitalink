@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro VitaLink</title>
+    <link rel="shortcut icon" href="./media/favicon_IA_Medica.ico" type="image/x-icon">
+    <script src="../static/js/sccript.js"></script>
+    <script src="../static/js/register.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <section>
+        <div th:replace="fragments/header :: header"></div>
+
+
+        <main>
+            <section class="section_main_registro">
+                <section class="section_form_registro">
+                    <form action="../JS/register.js" method="post" id="formulario_registro">
+                        <p>
+                            <label for="nombre">Nombre:<strong>*</strong></label>
+                            <input type="text" name="nombre" id="nombre" required>
+                        </p>
+                        <p>
+                            <label for="apellidos">Apellidos:</label>
+                            <input type="text" id="apellidos" name="apellidos">
+                        </p>
+                        <p>
+                            <label for="correo">Correo Electrónico:<strong>*</strong></label>
+                            <input type="email" name="correo" id="correo" required>
+                        </p>
+                        <p>
+                            <label for="telefono">Teléfono:<strong>*</strong></label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </p>
+                        <p id="document_id">
+                            <select name="document" id="documentId">
+                                <option value="dni">DNI</option>
+                                <option value="nif">NIF</option>
+                            </select>
+                            <input type="text" id="dni" name="dni" required>
+                        </p>
+
+                        <p>
+                            <label for="ciudad">Ciudad:<strong>*</strong></label>
+                            <select id="ciudad" name="ciudad_id">
+                                <option value="">Seleccione una ciudad</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="cpostal">Código Postal:</label>
+                            <input type="text" id="cpostal" name="cp">
+                        </p>
+                        <p>
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" name="psw">
+                        </p>
+                        <p class="politicsUse">
+                            <input type="checkbox" id="politcs_privacy" name="politcs">
+                            <label for="politcs_privacy">Acepto los<a href="#"><strong>Terminos y Condiciones</strong></a></label>
+                        </p>
+                        <p>
+                            <button type="submit" id="btn-submit">Enviar</button>
+                        </p>
+                    </form>
+                </section>
+            </section>
+        </main>
+
+        <div th:replace="fragments/footer :: footer"></div>
+    </section>
+</body>
+</html>
