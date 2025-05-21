@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "🔔 Próximos medicamentos", 
             "🏥 Próxima cita", 
             "⚠️ Alertas de dosis olvidadas", 
-            "<a href='../Vista/recordatorios.html' class='btn-ver-mas'>Ver más</a>"
+            "<a href='../../templates/registro.html' class='btn-ver-mas'>Ver más</a>"
           ] 
         },
         { 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
           items: [
             "💬 3 mensajes sin leer", 
             "🔔 Notificaciones recientes", 
-            "<a href='../Vista/mensajesUsuario.html' class='btn-ver-mas'>Ir a bandeja</a>"
+            "<a href='../../templates/mensajesUsuario.html' class='btn-ver-mas'>Ir a bandeja</a>"
           ] 
         },
         
