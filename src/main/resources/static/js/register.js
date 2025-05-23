@@ -5,16 +5,17 @@ document.getElementById("form-registro").addEventListener("submit", function(e) 
   const datos = {
     nombre: formData.get("nombre"),
     apellidos: formData.get("apellidos"),
-    nacimiento: formData.get("nacimiento"), // ISO string o yyyy-MM-dd
-    tipo_documento: formData.get("tipo_documento"),
-    numero_identificacion: formData.get("numero_identificacion"),
+    nacimiento: formData.get("nacimiento"),
+    tipoDocumento: formData.get("tipoDocumento"),
+    numeroIdentificacion: formData.get("numeroIdentificacion"),
     telefono: formData.get("telefono"),
-    numero_tarjeta_sanitaria: formData.get("numero_tarjeta_sanitaria"),
+    numeroTarjetaSanitaria: formData.get("numeroTarjetaSanitaria"),
     genero: formData.get("genero"),
+    correoElectronico: formData.get("correoElectronico"),
     contrasenia: formData.get("contrasenia"),
-    correo_electronico: formData.get("correo_electronico"),
     direccion: formData.get("direccion"),
-    ciudad_id: formData.get("ciudad_id")
+    ciudadId: formData.get("ciudadId"),
+    cpId: formData.get("cpId")
   };
 
   fetch("http://localhost:8080/api/registro", {
