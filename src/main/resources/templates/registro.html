@@ -11,13 +11,13 @@
 </head>
 <body>
     <section>
-        <div th:replace="fragments/header :: header"></div>
+        <div th:include="fragments/header :: header"></div>
 
 
         <main>
             <section class="section_main_registro">
                 <section class="section_form_registro">
-                    <form id="form-registro">
+                    <form th:action="@{/inicioSesion}" method="post" id="form-registro">
                         <p>
                             <label for="nombre">Nombre:<strong>*</strong></label>
                             <input type="text" name="nombre" id="nombre" required>
