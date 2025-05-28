@@ -24,7 +24,7 @@ public class UsuarioController {
 
     ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-    @PostMapping("/regsitro")
+    @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute Usuario usuario, Model model){
         usuario.asignarIdUsuario();
         listaUsuarios.add(usuario);

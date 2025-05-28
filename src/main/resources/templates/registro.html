@@ -17,7 +17,7 @@
         <main>
             <section class="section_main_registro">
                 <section class="section_form_registro">
-                    <form th:action="@{/inicioSesion}" method="post" id="form-registro">
+                    <form id="form-registro"  method="POST" th:object="${usuario}" th:action="@{/guardar}" novalidate>
                         <p>
                             <label for="nombre">Nombre:<strong>*</strong></label>
                             <input type="text" name="nombre" id="nombre" required>
