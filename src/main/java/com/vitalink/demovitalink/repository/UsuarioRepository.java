@@ -1,8 +1,9 @@
 package com.vitalink.demovitalink.repository;
 
-import com.vitalink.demovitalink.modell.Usuario;
+import com.vitalink.demovitalink.modell.Usuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    boolean existsByCorreoElectronico(String correoElectronico);
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuarios, Integer> {
 }

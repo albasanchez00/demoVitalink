@@ -5,53 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro VitaLink</title>
     <link rel="shortcut icon" href="./media/favicon_IA_Medica.ico" type="image/x-icon">
-    <script src="../static/js/sccript.js"></script>
-    <script src="../static/js/register.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
+    <script src="../static/js/script.js" defer></script>
+    <script src="../static/js/register.js" defer></script>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
     <section>
-        <div th:replace="fragments/header :: header"></div>
+        <div th:replace="~{fragments/header :: header}"></div>
 
 
         <main>
             <section class="section_main_registro">
                 <section class="section_form_registro">
-                    <form id="form-registro"  method="POST" th:object="${usuario}" th:action="@{/guardar}" novalidate>
+                    <h2 th:text="${usuario?.id == 0 ? 'Nuevo Usuario' : 'Editar Usuario'}"></h2>
+                    <form id="form-registro" th:action="@{/api/listaUsuarios}" method="POST"  th:object="${usuario}" novalidate>
                         <p>
                             <label for="nombre">Nombre:<strong>*</strong></label>
-                            <input type="text" name="nombre" id="nombre" required>
+                            <input type="text" th:field="*{nombre}" name="nombre" id="nombre" required>
                         </p>
                         <p>
                             <label for="apellidos">Apellidos:</label>
-                            <input type="text" id="apellidos" name="apellidos">
+                            <input type="text" th:field="*{apellidos}" id="apellidos" name="apellidos">
                         </p>
                         <p>
                             <label for="nacimiento">Fecha de Nacimiento:</label>
-                            <input type="date" id="nacimiento" name="nacimiento">
+                            <input type="date" id="nacimiento" th:field="*{nacimiento}" name="nacimiento">
                         </p>
                         <p>
                             <label for="correoElectronico">Correo Electrónico:<strong>*</strong></label>
-                            <input type="email" name="correoElectronico" id="correoElectronico" required>
+                            <input type="email" name="correoElectronico" th:field="*{correoElectronico}" id="correoElectronico" required>
                         </p>
                         <p>
                             <label for="telefono">Teléfono:<strong>*</strong></label>
-                            <input type="tel" id="telefono" name="telefono" required>
+                            <input type="tel"
+                                   th:field="*{telefono}"
+                                   id="telefono"
+                                   name="telefono"
+                                   required
+                                   aria-required="true"
+                                   pattern="[0-9]{9}"
+                                   maxlength="9"
+                                   placeholder="Ejemplo: 123456789"
+                                   autocomplete="tel">
                         </p>
                         <p id="document_id">
-                            <select name="tipoDocumento" id="tipoDocumento">
+                            <label for="tipoDocumento">Tipo de documento:<strong>*</strong></label>
+                            <select th:field="*{tipoDocumento}" name="tipoDocumento" id="tipoDocumento" required aria-required="true">
                                 <option value="dni">DNI</option>
                                 <option value="nif">NIF</option>
                             </select>
-                            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" required placeholder="Número de documento">
+                            <input type="text" th:field="*{numeroIdentificacion}"
+                                   id="numeroIdentificacion"
+                                   name="numeroIdentificacion"
+                                   required
+                                   aria-required="true"
+                                   maxlength="9"
+                                   pattern="[0-9A-Za-z]{9}"
+                                   placeholder="Número de documento">
                         </p>
                         <p>
                             <label for="numeroTarjetaSanitaria">Nº Tarjeta Sanitaria:</label>
-                            <input type="text" id="numeroTarjetaSanitaria" name="numeroTarjetaSanitaria">
+                            <input type="text" th:field="*{numeroTarjetaSanitaria}" id="numeroTarjetaSanitaria" name="numeroTarjetaSanitaria">
                         </p>
                         <p>
                             <label for="genero">Género:</label>
-                            <select name="genero" id="genero">
+                            <select th:field="*{genero}" name="genero" id="genero">
                                 <option value="femenino">Femenino</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="otro">Otro</option>
@@ -59,22 +77,22 @@
                         </p>
                         <p>
                             <label for="direccion">Dirección:</label>
-                            <input type="text" id="direccion" name="direccion">
+                            <input type="text" th:field="*{direccion}" id="direccion" name="direccion">
                         </p>
                         <p>
                             <label for="ciudadId">Ciudad:<strong>*</strong></label>
-                            <select id="ciudadId" name="ciudadId">
+                            <select th:field="*{ciudadId}" id="ciudadId" name="ciudadId">
                                 <option value="">Seleccione una ciudad</option>
                                 <!-- Opciones dinámicas si usas JS -->
                             </select>
                         </p>
                         <p>
                             <label for="cpId">Código Postal:</label>
-                            <input type="text" id="cpId" name="cpId">
+                            <input type="text" th:field="*{cpId}" id="cpId" name="cpId">
                         </p>
                         <p>
                             <label for="contrasenia">Contraseña:</label>
-                            <input type="password" id="contrasenia" name="contrasenia">
+                            <input type="password" th:field="*{contrasenia}" id="contrasenia" name="contrasenia">
                         </p>
                         <p class="politicsUse">
                             <input type="checkbox" id="politcs_privacy" name="politcs">
@@ -89,7 +107,7 @@
             </section>
         </main>
 
-        <div th:replace="fragments/footer :: footer"></div>
+        <div th:replace="~{fragments/footer :: footer}"></div>
     </section>
 </body>
 </html>
