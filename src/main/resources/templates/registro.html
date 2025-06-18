@@ -4,41 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro VitaLink</title>
-    <link rel="shortcut icon" href="./media/favicon_IA_Medica.ico" type="image/x-icon">
-    <script src="../static/js/script.js" defer></script>
-    <script src="../static/js/register.js" defer></script>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" th:href="@{/media/favicon_IA_Medica.ico}" type="image/x-icon">
+    <script th:src="@{/static/js/script}" defer></script>
+    <script th:src="@{/static/js/register}" defer></script>
+    <link rel="stylesheet" th:href="@{/static/css/style}">
 </head>
 <body>
     <section>
         <div th:replace="~{fragments/header :: header}"></div>
 
-
         <main>
             <section class="section_main_registro">
                 <section class="section_form_registro">
                     <h2 th:text="${usuario?.id == 0 ? 'Nuevo Usuario' : 'Editar Usuario'}"></h2>
-                    <form id="form-registro" th:action="@{/api/listaUsuarios}" method="POST"  th:object="${usuario}" novalidate>
+                    <form id="form-registro" th:action="@{/guardarUsuario}" method="POST"  th:object="${usuario}" novalidate>
                         <p>
                             <label for="nombre">Nombre:<strong>*</strong></label>
-                            <input type="text" th:field="*{nombre}" name="nombre" id="nombre" required>
+                            <input type="text" name="nombre" id="nombre" required>
                         </p>
                         <p>
                             <label for="apellidos">Apellidos:</label>
-                            <input type="text" th:field="*{apellidos}" id="apellidos" name="apellidos">
+                            <input type="text" id="apellidos" name="apellidos">
                         </p>
                         <p>
                             <label for="nacimiento">Fecha de Nacimiento:</label>
-                            <input type="date" id="nacimiento" th:field="*{nacimiento}" name="nacimiento">
+                            <input type="date" id="nacimiento" name="nacimiento" required>
                         </p>
                         <p>
                             <label for="correoElectronico">Correo Electrónico:<strong>*</strong></label>
-                            <input type="email" name="correoElectronico" th:field="*{correoElectronico}" id="correoElectronico" required>
+                            <input type="email" name="correoElectronico" id="correoElectronico" required>
                         </p>
                         <p>
                             <label for="telefono">Teléfono:<strong>*</strong></label>
                             <input type="tel"
-                                   th:field="*{telefono}"
                                    id="telefono"
                                    name="telefono"
                                    required
@@ -50,11 +48,11 @@
                         </p>
                         <p id="document_id">
                             <label for="tipoDocumento">Tipo de documento:<strong>*</strong></label>
-                            <select th:field="*{tipoDocumento}" name="tipoDocumento" id="tipoDocumento" required aria-required="true">
+                            <select name="tipoDocumento" id="tipoDocumento" required aria-required="true">
                                 <option value="dni">DNI</option>
                                 <option value="nif">NIF</option>
                             </select>
-                            <input type="text" th:field="*{numeroIdentificacion}"
+                            <input type="text"
                                    id="numeroIdentificacion"
                                    name="numeroIdentificacion"
                                    required
@@ -65,11 +63,11 @@
                         </p>
                         <p>
                             <label for="numeroTarjetaSanitaria">Nº Tarjeta Sanitaria:</label>
-                            <input type="text" th:field="*{numeroTarjetaSanitaria}" id="numeroTarjetaSanitaria" name="numeroTarjetaSanitaria">
+                            <input type="text" id="numeroTarjetaSanitaria" name="numeroTarjetaSanitaria" required>
                         </p>
                         <p>
                             <label for="genero">Género:</label>
-                            <select th:field="*{genero}" name="genero" id="genero">
+                            <select name="genero" id="genero" required>
                                 <option value="femenino">Femenino</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="otro">Otro</option>
@@ -77,22 +75,22 @@
                         </p>
                         <p>
                             <label for="direccion">Dirección:</label>
-                            <input type="text" th:field="*{direccion}" id="direccion" name="direccion">
+                            <input type="text" id="direccion" name="direccion" required>
                         </p>
                         <p>
                             <label for="ciudadId">Ciudad:<strong>*</strong></label>
-                            <select th:field="*{ciudadId}" id="ciudadId" name="ciudadId">
+                            <select id="ciudadId" name="ciudadId">
                                 <option value="">Seleccione una ciudad</option>
                                 <!-- Opciones dinámicas si usas JS -->
                             </select>
                         </p>
                         <p>
                             <label for="cpId">Código Postal:</label>
-                            <input type="text" th:field="*{cpId}" id="cpId" name="cpId">
+                            <input type="text" id="cpId" name="cpId" required>
                         </p>
                         <p>
                             <label for="contrasenia">Contraseña:</label>
-                            <input type="password" th:field="*{contrasenia}" id="contrasenia" name="contrasenia">
+                            <input type="password" id="contrasenia" name="contrasenia" required>
                         </p>
                         <p class="politicsUse">
                             <input type="checkbox" id="politcs_privacy" name="politcs">
@@ -102,6 +100,8 @@
                             <button type="submit" id="btn-submit">Enviar</button>
                         </p>
                     </form>
+
+                    <div th:if="${error!=null}" th:text="${error}" class="alert alert-danger" role="alert"></div>
 
                 </section>
             </section>

@@ -1,4 +1,4 @@
-package com.vitalink.demovitalink.modell;
+package com.vitalink.demovitalink.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,36 +1,56 @@
 package com.vitalink.demovitalink.controller;
 
-import com.vitalink.demovitalink.modell.Usuarios;
+import com.vitalink.demovitalink.model.Usuarios;
 import com.vitalink.demovitalink.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/api")
 public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+
     @GetMapping("/registro")
-    public String mostrarRegistro(Model model) {
-        model.addAttribute("usuario", new Usuarios()); // Asegura que usuario nunca sea null
-        return "registro";
+    public String altaUsuario(Model model){
+        model.addAttribute("usuario", new Usuarios());
+        return "registro";  // Cambiado de "panelUsuario" a "registro"
     }
 
-    ArrayList<Usuarios> listaUsuarios = new ArrayList<>();
 
-    @PostMapping("/listaUsuarios")
-    public String guardarUsuario(@ModelAttribute Usuarios usuarioForm, Model model){
-        usuarioRepository.save(usuarioForm); //Lo guarda en la BBDD
-        return "redirect:/listaUsuarios";
+    @PostMapping("/guardarUsuario")
+    public String guardarUsuario(@ModelAttribute Usuarios usuario,Model model) {
+        if (usuarioRepository.findByNumeroIdentificacion(usuario.getNumeroIdentificacion()).isEmpty()) {
+            Usuarios user = new Usuarios();
+            user.setNombre(usuario.getNombre());
+            user.setApellidos(usuario.getApellidos());
+            user.setNacimiento(usuario.getNacimiento());
+            user.setTipoDocumento(usuario.getTipoDocumento());
+            user.setNumeroIdentificacion(usuario.getNumeroIdentificacion());
+            user.setTelefono(usuario.getTelefono());
+            user.setNumeroTarjetaSanitaria(usuario.getNumeroTarjetaSanitaria());
+            user.setGenero(usuario.getGenero());
+            user.setCorreoElectronico(usuario.getCorreoElectronico());
+            user.setContrasenia(usuario.getContrasenia());
+            user.setDireccion(usuario.getDireccion());
+            user.setCiudadId(usuario.getCiudadId());
+            user.setCpId(usuario.getCpId());
+            usuarioRepository.save(user);
+            return "redirect:/";
+        }else{
+            model.addAttribute("error", "El usuario ya existe, indique uno nuevo");
+            return "registro";
+        }
     }
 
-    @GetMapping("/crud")
+    @GetMapping("/listaUsuarios")
     public String mostrarUsuarios(Model model){
         model.addAttribute("usuariosCrud", usuarioRepository.findAll());
         return "listaUsuarios";
@@ -50,5 +70,10 @@ public class UsuarioController {
     public String eliminarCliente(@PathVariable int id, Model model){
         usuarioRepository.deleteById(id);
         return "redirect:/listaUsuarios";
+    }
+    //Logout
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/login";
     }
 }
