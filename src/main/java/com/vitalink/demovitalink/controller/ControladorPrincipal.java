@@ -25,27 +25,12 @@ public class ControladorPrincipal {
         return "contacto";
     }
 
-    @GetMapping("/inicioSesion")
-    public String inicioSesion() {
-        return "inicioSesion";
-    }
-
-    @GetMapping("/registro")
-    public String registroUsuario() {
-        return "registro";
-    }
-
     @GetMapping("/terminoCondiciones")
     public String terminosCondiciones() {
         return "terminoCondiciones";
     }
 
 
-    //Páginas Acceso Cliente
-    @GetMapping("/panelUsuario")
-    public String panelUsuario() {
-        return "panelUsuario";
-    }
 
     @GetMapping("/mensajesUsuario")
     public String mensajesUsuario() {

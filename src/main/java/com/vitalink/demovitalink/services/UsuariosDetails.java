@@ -22,7 +22,7 @@ public class UsuariosDetails implements UserDetails {
     //Metodo que devuelve el password del usuario
     @Override
     public String getPassword() {
-        return usuario.getContrasenia();
+        return usuario.getPassword();
     }
 
     //Metodo que devuelve el username del usuario

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <meta charset="UTF-8">
+  <title>Inicio Sesión</title>
+  <link rel="shortcut icon" th:href="@{/media/favicon_IA_Medica}" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{/css/style}">
+  <script th:src="@{/static/js/sccript}" defer></script>
 </head>
 <body>
 <!-- Define el fragmento de cabecera -->
@@ -30,7 +35,7 @@
 
     <section class="section_user">
       <picture><img src="./media/icons/user-rounded-icon.svg" alt="icon user"></picture>
-      <a href="./inicioSesion.html">Inicio Sesión</a>
+      <a th:href="@{/inicioSesion}">Inicio Sesión</a>
     </section>
   </section>
 </header>

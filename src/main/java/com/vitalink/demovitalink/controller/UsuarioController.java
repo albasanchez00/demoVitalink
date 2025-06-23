@@ -15,8 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    UsuarioRepository usuarioRepository;
 
+    @Autowired
+    PasswordEncoder encoder;
+
+    @GetMapping("/inicioSesion")
+    public String inicioSesion(){
+        return "inicioSesion";
+    }
 
     @GetMapping("/registro")
     public String altaUsuario(Model model){
@@ -38,10 +45,11 @@ public class UsuarioController {
             user.setNumeroTarjetaSanitaria(usuario.getNumeroTarjetaSanitaria());
             user.setGenero(usuario.getGenero());
             user.setCorreoElectronico(usuario.getCorreoElectronico());
-            user.setContrasenia(usuario.getContrasenia());
+            user.setPassword(encoder.encode(usuario.getPassword()));
             user.setDireccion(usuario.getDireccion());
             user.setCiudadId(usuario.getCiudadId());
             user.setCpId(usuario.getCpId());
+            user.setRol(usuario.getRol());
             usuarioRepository.save(user);
             return "redirect:/";
         }else{
@@ -74,6 +82,6 @@ public class UsuarioController {
     //Logout
     @GetMapping("/logout")
     public String logout(){
-        return "redirect:/login";
+        return "redirect:/inicioSesion";
     }
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_usuario;
     private String nombre;
     private String apellidos;
     private Date nacimiento;
@@ -21,18 +21,19 @@ public class Usuarios {
     private String numeroTarjetaSanitaria;
     private String genero;
     private String correoElectronico;
-    private String contrasenia;
+    private String password;
     private String direccion;
     private String ciudadId;
     private String cpId;
+    private String rol;
 
 
     public int getId() {
-        return id;
+        return id_usuario;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_usuario = id;
     }
 
     public String getNombre() {
@@ -107,12 +108,12 @@ public class Usuarios {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDireccion() {
@@ -139,24 +140,31 @@ public class Usuarios {
         this.cpId = cpId;
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
     @Override
     public String toString() {
         return "Usuarios{" +
-                "nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", nacimiento=" + nacimiento +
-                ", tipoDocumento='" + tipoDocumento + '\'' +
-                ", numeroIdentificacion='" + numeroIdentificacion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", numeroTarjetaSanitaria='" + numeroTarjetaSanitaria + '\'' +
-                ", genero='" + genero + '\'' +
-                ", correoElectronico='" + correoElectronico + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", ciudadId='" + ciudadId + '\'' +
-                ", cpId='" + cpId + '\'' +
-                '}';
+                "\nRol → " + rol +
+                "\nNombre → " + nombre +
+                "\nApellidos → " + apellidos +
+                "\nNacimiento → " + nacimiento +
+                "\nTipo Documento → " + tipoDocumento +
+                "\nNumero Identificación → " + numeroIdentificacion +
+                "\nTelefono → " + telefono +
+                "\nNÚmero Tarjeta Sanitaria → " + numeroTarjetaSanitaria +
+                "\nGenerov" + genero +
+                "\nCorreo Electrónico → " + correoElectronico +
+                "\nContrasenia → " + password +
+                "\nDireccion → " + direccion +
+                "\nCiudad → " + ciudadId +
+                "\nCódigo Postal → " + cpId;
     }
 }
 
