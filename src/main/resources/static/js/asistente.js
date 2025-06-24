@@ -9,7 +9,7 @@ async function handleKey(event) {
 
     try {
       // Reemplaza esta URL con tu webhook real
-      const response = await fetch("https://primary-production-8eee.up.railway.app/webhook-test/asistente", {
+      const response = await fetch("https://primary-production-8eee.up.railway.app/webhook/asistente", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })

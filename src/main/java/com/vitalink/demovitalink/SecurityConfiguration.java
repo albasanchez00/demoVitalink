@@ -21,7 +21,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.POST,"/panelUsuario").permitAll()
 
                 //Formulario de Gestión de Usuarios: solo rol 'admin'
-                .requestMatchers(HttpMethod.GET,"/altaUsuario","/formulario").permitAll()
+                .requestMatchers(HttpMethod.GET,"/registro","/formulario").permitAll()
                 .requestMatchers(HttpMethod.POST,"/guardarUsuario").permitAll()
                 .requestMatchers("/editar/**","/borrar/**").permitAll()
 

@@ -31,31 +31,31 @@ public class UsuarioController {
         return "registro";  // Cambiado de "panelUsuario" a "registro"
     }
 
-    @PostMapping("/guardarUsuario")
-    public String guardarUsuario(@ModelAttribute Usuarios usuario,Model model) {
-        if (usuarioRepository.findByNumeroIdentificacion(usuario.getNumeroIdentificacion()).isEmpty()) {
-            Usuarios user = new Usuarios();
-            user.setNombre(usuario.getNombre());
-            user.setApellidos(usuario.getApellidos());
-            user.setNacimiento(usuario.getNacimiento());
-            user.setTipoDocumento(usuario.getTipoDocumento());
-            user.setNumeroIdentificacion(usuario.getNumeroIdentificacion());
-            user.setTelefono(usuario.getTelefono());
-            user.setNumeroTarjetaSanitaria(usuario.getNumeroTarjetaSanitaria());
-            user.setGenero(usuario.getGenero());
-            user.setCorreoElectronico(usuario.getCorreoElectronico());
-            user.setPassword(encoder.encode(usuario.getPassword()));
-            user.setDireccion(usuario.getDireccion());
-            user.setCiudadId(usuario.getCiudadId());
-            user.setCpId(usuario.getCpId());
-            user.setRol(usuario.getRol());
-            usuarioRepository.save(user);
-            return "redirect:/";
-        }else{
-            model.addAttribute("error", "El usuario ya existe, indique uno nuevo");
-            return "registro";
-        }
-    }
+//    @PostMapping("/guardarUsuario")
+//    public String guardarUsuario(@ModelAttribute Usuarios usuario,Model model) {
+//        if (usuarioRepository.findByNumeroIdentificacion(usuario.getNumeroIdentificacion()).isEmpty()) {
+//            Usuarios user = new Usuarios();
+//            user.setNombre(usuario.getNombre());
+//            user.setApellidos(usuario.getApellidos());
+//            user.setNacimiento(usuario.getNacimiento());
+//            user.setTipoDocumento(usuario.getTipoDocumento());
+//            user.setNumeroIdentificacion(usuario.getNumeroIdentificacion());
+//            user.setTelefono(usuario.getTelefono());
+//            user.setNumeroTarjetaSanitaria(usuario.getNumeroTarjetaSanitaria());
+//            user.setGenero(usuario.getGenero());
+//            user.setCorreoElectronico(usuario.getCorreoElectronico());
+//            user.setPassword(encoder.encode(usuario.getPassword()));
+//            user.setDireccion(usuario.getDireccion());
+//            user.setCiudadId(usuario.getCiudadId());
+//            user.setCpId(usuario.getCpId());
+//            user.setRol(usuario.getRol());
+//            usuarioRepository.save(user);
+//            return "redirect:/";
+//        }else{
+//            model.addAttribute("error", "El usuario ya existe, indique uno nuevo");
+//            return "registro";
+//        }
+//    }
 
     @GetMapping("/listaUsuarios")
     public String mostrarUsuarios(Model model){
