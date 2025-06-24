@@ -31,7 +31,6 @@ public class UsuarioController {
         return "registro";  // Cambiado de "panelUsuario" a "registro"
     }
 
-
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@ModelAttribute Usuarios usuario,Model model) {
         if (usuarioRepository.findByNumeroIdentificacion(usuario.getNumeroIdentificacion()).isEmpty()) {

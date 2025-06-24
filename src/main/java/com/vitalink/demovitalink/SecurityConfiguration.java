@@ -15,13 +15,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //Configurar las páginas que según el rol mostrará o negará
-        http.authorizeHttpRequests(auth->auth.requestMatchers(HttpMethod.GET,"/","/index","/media/**","/css/**","/js/**").permitAll()
+        http.authorizeHttpRequests(auth->auth.requestMatchers(HttpMethod.GET,"/","/idnex","/media/**","/css/**","/js/**").permitAll()
                 //Acceso al crud
                 .requestMatchers(HttpMethod.GET,"/panelUsuario").permitAll()
                 .requestMatchers(HttpMethod.POST,"/panelUsuario").permitAll()
 
                 //Formulario de Gestión de Usuarios: solo rol 'admin'
-                .requestMatchers(HttpMethod.GET,"/registro","/guardarUsuario").permitAll()
+                .requestMatchers(HttpMethod.GET,"/altaUsuario","/formulario").permitAll()
                 .requestMatchers(HttpMethod.POST,"/guardarUsuario").permitAll()
                 .requestMatchers("/editar/**","/borrar/**").permitAll()
 
@@ -38,14 +38,14 @@ public class SecurityConfiguration {
 
     //Encripta y lee las contraseñas... con BCrypt para usarlo en el login de Spring
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     // Expone un objeto de Spring que usa internamente para autenticar usuarios,
     // y lo hace accesible para que el programador lo pueda utilizar también...
     @Bean
-   public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception{
         return authConfig.getAuthenticationManager();
     }
 

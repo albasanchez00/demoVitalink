@@ -15,9 +15,9 @@ public class UsuariosDetailsServices implements UserDetailsService {
 
     //Metodo que devuelve los datos del usuario
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String numeroIdentificacion) throws UsernameNotFoundException {
         //Busca el usuario en la base de datos
-        return usuarioRepository.findByNumeroIdentificacion(username).map(UsuariosDetails::new)
+        return usuarioRepository.findByNumeroIdentificacion(numeroIdentificacion).map(UsuariosDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 }
