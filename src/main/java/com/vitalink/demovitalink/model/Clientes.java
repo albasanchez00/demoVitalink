@@ -25,11 +25,11 @@ public class Clientes {
     private String cpId;
 
 
-    public int getId() {
+    public int getIdCliente() {
         return id_cliente;
     }
 
-    public void setId(int id) {
+    public void setIdCliente(int id) {
         this.id_cliente = id;
     }
 
