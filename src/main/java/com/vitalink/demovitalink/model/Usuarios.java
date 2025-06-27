@@ -16,6 +16,7 @@ public class Usuarios {
     private String password;
     private String rol;
 
+
     public int getId_usuario() {
         return id_usuario;
     }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 public class UsuarioController {
 
@@ -33,7 +35,7 @@ public class UsuarioController {
 
     @PostMapping("/guardarUsuario")
     public String guardarUsuario(@ModelAttribute Usuarios usuario,Model model) {
-        if (usuarioRepository.findByNumeroIdentificacion(usuario.getNumeroIdentificacion()).isEmpty()) {
+        if (usuarioRepository.findById(usuario.getId_usuario()).isEmpty()) {
             Usuarios user = new Usuarios();
             user.setNameUser(usuario.getNameUser());
             user.setPassword(encoder.encode(usuario.getPassword()));
@@ -57,7 +59,7 @@ public class UsuarioController {
         //Debemos enviar los datos del cliente que hemos consultado mediante el {id},
         //Hibernate lo busca y lo almacena en un objeto (Clientes).
         //Se busca en la BBDD y despues se almacenan los datos en un objeto tipo Cliente.
-        Usuarios usuario = usuarioRepository.findById(id).get(); //Busca x el id invitado por la url..
+        Optional<Usuarios> usuario = usuarioRepository.findById(id); //Busca x el id invitado por la url..
         model.addAttribute("usuario", usuario);
         return "registro";
     }

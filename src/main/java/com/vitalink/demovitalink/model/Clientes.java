@@ -1,16 +1,14 @@
 package com.vitalink.demovitalink.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
 public class Clientes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_cliente;
+    @Column(name = "id_cliente")
+    private int idCliente;
     private String nombre;
     private String apellidos;
     private Date nacimiento;
@@ -26,11 +24,11 @@ public class Clientes {
 
 
     public int getIdCliente() {
-        return id_cliente;
+        return idCliente;
     }
 
-    public void setIdCliente(int id) {
-        this.id_cliente = id;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -134,7 +132,7 @@ public class Clientes {
 
     @Override
     public String toString() {
-        return "Cliente {Id:" + id_cliente + "}" +
+        return "Cliente {Id:" + idCliente + "}" +
                 "\nNombre → " + nombre +
                 "\nApellidos → " + apellidos +
                 "\nNacimiento → " + nacimiento +

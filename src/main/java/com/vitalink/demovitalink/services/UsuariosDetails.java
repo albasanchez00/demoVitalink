@@ -14,10 +14,14 @@ public class UsuariosDetails implements UserDetails {
     public UsuariosDetails(Usuarios usuario) {
         this.usuario = usuario;
     }
+
+    public UsuariosDetails() {
+    }
+
     //Metodo que devuelve los datos del usuario
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("DNI_"+usuario.getNumeroIdentificacion()));
+        return List.of(new SimpleGrantedAuthority("DNI_"+usuario.getId_usuario()));
     }
     //Metodo que devuelve el password del usuario
     @Override
@@ -29,7 +33,7 @@ public class UsuariosDetails implements UserDetails {
     @Override
     public String getUsername() {
         System.out.println(usuario.toString());
-        return usuario.getNombre();
+        return usuario.getNameUser();
     }
     //Metodos que indican si el usuario esta habilitado o no
     @Override

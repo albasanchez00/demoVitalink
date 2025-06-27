@@ -23,10 +23,10 @@ public class ClientesController {
 
     @PostMapping("/guardarDatosUsuario")
     public String guardarUsuario(@ModelAttribute Clientes cliente, Model model) {
-        if (clientesRepository.findAllById_cliente(cliente.getIdCliente()).isEmpty()) {
+        if (clientesRepository.findClientesByIdCliente(cliente.getIdCliente()).isEmpty()) {
             Clientes client = new Clientes();
             client.setNombre(cliente.getNombre());
-            client.setApellidos(cliente.getNombre());
+            client.setApellidos(cliente.getApellidos());
             client.setNacimiento(cliente.getNacimiento());
             client.setTipoDocumento(cliente.getTipoDocumento());
             client.setNumeroIdentificacion(cliente.getNumeroIdentificacion());
