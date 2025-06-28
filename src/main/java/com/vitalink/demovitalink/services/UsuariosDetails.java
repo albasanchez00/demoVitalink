@@ -9,20 +9,17 @@ import java.util.Collection;
 import java.util.List;
 
 public class UsuariosDetails implements UserDetails {
-    private Usuarios usuario;
-    //Constructor
+    private final Usuarios usuario;
+
     public UsuariosDetails(Usuarios usuario) {
         this.usuario = usuario;
     }
 
-    public UsuariosDetails() {
-    }
-
-    //Metodo que devuelve los datos del usuario
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("DNI_"+usuario.getId_usuario()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
     }
+
     //Metodo que devuelve el password del usuario
     @Override
     public String getPassword() {
@@ -33,7 +30,7 @@ public class UsuariosDetails implements UserDetails {
     @Override
     public String getUsername() {
         System.out.println(usuario.toString());
-        return usuario.getNameUser();
+        return usuario.getUsername();
     }
     //Metodos que indican si el usuario esta habilitado o no
     @Override

@@ -5,20 +5,20 @@ import com.vitalink.demovitalink.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public class UsuariosDetailsServices implements UserDetailsService{
+@Service
+public class UsuariosDetailsServices implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
 
-    //Constructor
     public UsuariosDetailsServices(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuarios usuario = usuarioRepository.findById_usuario(username)
+        Usuarios usuario = usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
         return new UsuariosDetails(usuario);
     }
-    
 }

@@ -15,24 +15,21 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //Configurar las páginas que según el rol mostrará o negará
-        http.authorizeHttpRequests(auth->auth.requestMatchers(HttpMethod.GET,"/","/idnex","/media/**","/css/**","/js/**").permitAll()
-                //Acceso al crud
-                .requestMatchers(HttpMethod.GET,"/panelUsuario").permitAll()
-                .requestMatchers(HttpMethod.POST,"/panelUsuario").permitAll()
-
-                //Formulario de Gestión de Usuarios: solo rol 'admin'
-                .requestMatchers(HttpMethod.GET,"/registro","/formulario").permitAll()
-                .requestMatchers(HttpMethod.POST,"/guardarUsuario").permitAll()
-                .requestMatchers("/editar/**","/borrar/**").permitAll()
-
-                //Cualquier otra ruta necesita autentificación.
-                .anyRequest().authenticated()
-        ).formLogin(form->form.loginPage("/inicioSesion")
-                .loginProcessingUrl("/inicioSesion")
-                .defaultSuccessUrl("/panelUsuario",true)
-                .permitAll()
-        ).logout(LogoutConfigurer::permitAll);
-
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/", "/index","/registro", "/registroExitoso",
+                                "/css/**", "/js/**", "/media/**"
+                        ).permitAll()
+                )
+                .formLogin(form -> form
+                        .loginPage("/inicioSesion")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/inicioSesion?logout")
+                        .permitAll()
+                );
         return http.build();
     }
 

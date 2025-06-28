@@ -2,7 +2,8 @@ package com.vitalink.demovitalink.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 @Entity
 public class Clientes {
     @Id
@@ -11,7 +12,7 @@ public class Clientes {
     private int idCliente;
     private String nombre;
     private String apellidos;
-    private Date nacimiento;
+    private LocalDate nacimiento;
     private String tipoDocumento;
     private String numeroIdentificacion;
     private String telefono;
@@ -21,7 +22,17 @@ public class Clientes {
     private String direccion;
     private String ciudadId;
     private String cpId;
+    @OneToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    private Usuarios usuario;
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 
     public int getIdCliente() {
         return idCliente;
@@ -47,11 +58,11 @@ public class Clientes {
         this.apellidos = apellidos;
     }
 
-    public Date getNacimiento() {
+    public LocalDate getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(Date nacimiento) {
+    public void setNacimiento(LocalDate nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -126,24 +137,5 @@ public class Clientes {
 
     public void setCpId(String cpId) {
         this.cpId = cpId;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "Cliente {Id:" + idCliente + "}" +
-                "\nNombre → " + nombre +
-                "\nApellidos → " + apellidos +
-                "\nNacimiento → " + nacimiento +
-                "\nTipo de Documento → " + tipoDocumento +
-                "\nNumero de Identificación → " + numeroIdentificacion +
-                "\nTelefono → " + telefono +
-                "\nNÚmero de Tarjeta Sanitaria → " + numeroTarjetaSanitaria +
-                "\nGenero → " + genero +
-                "\nCorreo Electrónico → " + correoElectronico +
-                "\nDireccion → " + direccion +
-                "\nCiudad → " + ciudadId +
-                "\nCódigo Postal → " + cpId;
     }
 }

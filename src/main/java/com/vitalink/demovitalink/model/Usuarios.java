@@ -5,18 +5,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.util.Date;
-
 @Entity
 public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
+
     private String username;
+
     private String password;
+
     private String rol;
 
-
+    // Getters y setters
     public int getId_usuario() {
         return id_usuario;
     }
@@ -25,11 +26,11 @@ public class Usuarios {
         this.id_usuario = id_usuario;
     }
 
-    public String getNameUser() {
+    public String getUsername() {
         return username;
     }
 
-    public void setNameUser(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -47,14 +48,6 @@ public class Usuarios {
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario {Id:" + id_usuario + "}" +
-                "\nUsername → " + username +
-                "\nPassword → " + password +
-                "\nRol → " + rol;
     }
 }
 
